@@ -14,6 +14,11 @@ jobs:
       - name: zip
         uses: papeloto/action-zip@v1
         with:
+          files: 00006382/
+          dest: 00006382.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
           files: books/
           dest: books.zip
       - name: Get current date
@@ -32,8 +37,8 @@ jobs:
           release_name: ${{ steps.date.outputs.date }}
           draft: false
           prerelease: false
-      - name: Upload main asset
-        id: upload-main-asset
+      - name: Upload books
+        id: upload-books
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,4 +46,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: books.zip
           asset_name: books.zip
+          asset_content_type: application/zip
+      - name: Upload 00006382
+        id: upload-00006382
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: 00006382.zip
+          asset_name: 00006382.zip
           asset_content_type: application/zip
