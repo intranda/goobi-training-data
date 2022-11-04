@@ -21,6 +21,31 @@ jobs:
         with:
           files: books/
           dest: books.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: documents/
+          dest: documents.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: graphics/
+          dest: graphics.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: letter1/
+          dest: letter1.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: letter2/
+          dest: letter2.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: record_groups/
+          dest: record_groups.zip
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S %Z')"
@@ -57,3 +82,54 @@ jobs:
           asset_path: 00006382.zip
           asset_name: 00006382.zip
           asset_content_type: application/zip
+      - name: Upload documents
+        id: upload-documents
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: documents.zip
+          asset_name: documents.zip
+          asset_content_type: application/zip
+      - name: Upload graphics
+        id: upload-graphics
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: graphics.zip
+          asset_name: graphics.zip
+          asset_content_type: application/zip
+      - name: Upload letter1
+        id: upload-letter1
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: letter1.zip
+          asset_name: letter1.zip
+          asset_content_type: application/zip
+      - name: Upload letter2
+        id: upload-letter2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: letter2.zip
+          asset_name: letter2.zip
+          asset_content_type: application/zip
+      - name: Upload record_groups
+        id: upload-record_groups
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: record_groups.zip
+          asset_name: record_groups.zip
+          asset_content_type: application/zip
+  
