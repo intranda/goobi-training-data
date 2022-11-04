@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead:ead xmlns:ead="urn:isbn:1-931666-22-9">
+  <ead:archdesc id="d7febd2a-9c49-4ecd-b63c-93cf6d68102c" type="folder">
+    <ead:dsc>
+      <ead:c id="0faf255b-19af-4151-9c00-33c9768bbad4">
+        <ead:c id="8432b9b7-ba2c-4b43-8bba-17c9d61a7c3b" />
+      </ead:c>
+    </ead:dsc>
+  </ead:archdesc>
+</ead:ead>
