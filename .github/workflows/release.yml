@@ -50,7 +50,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           files: 00006382/ documents/ letter1/ letter2/
-          recursive: true
+          recursive: false
           dest: training.zip
       - name: Get current date
         id: date
