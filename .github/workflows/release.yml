@@ -46,6 +46,11 @@ jobs:
         with:
           files: record_groups/
           dest: record_groups.zip
+      - name: zip
+        uses: papeloto/action-zip@v1
+        with:
+          files: 00006382/ letter1/ letter2/ documents/
+          dest: training.zip
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S %Z')"
@@ -131,5 +136,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: record_groups.zip
           asset_name: record_groups.zip
+          asset_content_type: application/zip
+      - name: Upload training
+        id: upload-training
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: training.zip
+          asset_name: training.zip
           asset_content_type: application/zip
   
