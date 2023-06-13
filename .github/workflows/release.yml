@@ -93,6 +93,16 @@ jobs:
           asset_path: 00006382.zip
           asset_name: 00006382.zip
           asset_content_type: application/zip
+      - name: Upload 12017607
+        id: upload-12017607
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: 12017607.zip
+          asset_name: 12017607.zip
+          asset_content_type: application/zip
       - name: Upload documents
         id: upload-documents
         uses: actions/upload-release-asset@v1
